@@ -1,9 +1,11 @@
+package Main;
+
 import java.util.ArrayList;
 
-public class Hand{
+public class Hand {
     private List<Int> hand = new ArrayList<>();
 
-    //checks if player given all 4 cards of same value
+    // checks if player given all 4 cards of same value
     public Hand(hand){
         int num_same_cards = 0;
         for (int i = 0; i < hand.size(); i++ ):{
