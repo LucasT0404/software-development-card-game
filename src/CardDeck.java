@@ -1,6 +1,9 @@
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.ArrayDeque;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class CardDeck {
     private final int deckNum;
@@ -36,6 +39,17 @@ public class CardDeck {
     public synchronized String contents() {
         return "deck" + deckNum + " contents: "
                 + deckCards.stream().map(Card::toString).collect(Collectors.joining(" "));
+    }
+
+    //each deck's final contents written to deckX_output.txt file
+    //each deck has a seperate file.
+    public void writeToDeckFile(){
+        String fileName = "deck" + deckNumber + "_output.txt";
+        try (FileWriter writer = new FileWriter(fileName)){
+            //writer.write(deckXcontents);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }
