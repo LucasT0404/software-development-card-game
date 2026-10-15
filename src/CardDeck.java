@@ -41,13 +41,13 @@ public class CardDeck {
                 + deckCards.stream().map(Card::toString).collect(Collectors.joining(" "));
     }
 
-    //each deck's final contents written to deckX_output.txt file
-    //each deck has a seperate file.
-    public void writeToDeckFile(){
-        String fileName = "deck" + deckNumber + "_output.txt";
-        try (FileWriter writer = new FileWriter(fileName)){
-            //writer.write(deckXcontents);
-        } catch (IOException e){
+    // each deck's final contents written to deckX_output.txt file
+    // each deck has a seperate file.
+    public void writeToDeckFile() {
+        String fileName = "deck" + deckNum + "_output.txt";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            // writer.write(deckXcontents);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
