@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-import java.io.FileWriter;
-import java.io.IOException;
-
-
-
-//start individual player threads in CardGame class.
-
-class Player implements Runnable{
-    private final int playerNum;
-
-
-
-
-
-
-
-}
-
-
-/*ensures thread safe class
-private volatile boolean exit
-=======
 import java.io.PrintWriter;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -49,7 +26,6 @@ public class Player implements Runnable {
             secondLock = discardDeck;
         }
         Hand hand = new Hand(playerNum);
->>>>>>> dc8fc13 (Started Player class runnable logic and constructor)
 
         this.playerNum = playerNum;
         this.drawDeck = drawDeck;
