@@ -1,9 +1,23 @@
-/*start individual player threads in CardGame class.
+import java.io.FileWriter;
+import java.io.IOException;
 
-class Player implements Runnable
-private playerNum;
 
-//ensures thread safe class
+
+//start individual player threads in CardGame class.
+
+class Player implements Runnable{
+    private final int playerNum;
+
+
+
+
+
+
+
+}
+
+
+/*ensures thread safe class
 private volatile boolean exit
 
 //list of all players, numbered 1 to n
