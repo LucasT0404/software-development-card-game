@@ -1,66 +1,35 @@
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.lang.NumberFormatException;
-import java.io.ArrayIndexOutOfBoundsException;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.FileReader;
 
+public class Pack {
+    private Pack() {
+    }
 
-public class Pack{
-    private List<Int> pack;
-    private int packIncrementer;
+    public static List<Card> loadPack(String filename, int numPlayers) {
+        // Create ArrayList to store each line of pack as a value in a list
+        List<Card> cards = new ArrayList<>();
 
-    public Pack(String filename, int numPlayers){
-        pack = new ArrayList<>();
-        packIncrementer = 0;
-        
-        //reading file contents line-by-line
-        //storing in List 'pack'
-        try (BufferedReader reader = new BufferedReader(new FileReader("filename.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            //while line not empty
+            // Until the last line is read
             while ((line = reader.readLine()) != null) {
-                int tryInt = Integer.parseInt(line);
-                if (tryInt < 0){
-                    throw new IOException();
-                }
-                pack.add(Card(tryInt));
+                int value = Integer.parseInt(line.trim());
+                cards.add(new Card(value));
             }
-        } catch (IOException e) {                   
-            System.err.println("Error: invalid file.");
-        } catch (NumberFormatException e){
-            System.err.println("Line is not integer.");
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Could not read pack: " + filename, e);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Line is not an integer", e);
         }
-
-        //check if list is invalid (ie. correct length should be same as total number of cards)
-        if (pack.size() != numCards){
-            throw new IOException("Invalid Pack. Must be same size as total number of cards");
+        // Check if pack size is valid
+        if (cards.size() != 8 * numPlayers) {
+            throw new IllegalArgumentException("Pack does not have a valid number of cards | Expected: "
+                    + (8 * numPlayers) + " Found: " + cards.size());
         }
-        
-
-        //shuffle cards, ie. Randomise
-        Collections.shuffle(pack);
-
+        return cards;
     }
-
-    public int size(){
-        return pack.size();
-    }
-
-    //counter to loop through list- increments by 1 each time
-    public Card getCardFromPack(){
-        if (packIncrementer >= size){
-            throw new ArrayIndexOutOfBoundsException("Couldn't retrieve card from pack: end of pack exceeded.");
-        } 
-        
-        return pack[packIncrementer++];
-    }
-
-
-        
-
-    // How do we get the cards when CardGame wants another card?
-
 }
-
