@@ -11,7 +11,9 @@ public class PlayerTest {
     void turnKeepsFourCardsAndDiscardsProperly() {
         CardDeck draw = new CardDeck(1);
         CardDeck discard = new CardDeck(2);
-        Player player = new Player(1, draw, discard, new AtomicInteger(0), new PrintWriter(new StringWriter()));
+        StringWriter writer = new StringWriter();
+        PrintWriter output = new PrintWriter(writer);
+        Player player = new Player(1, draw, discard, new AtomicInteger(0), output);
         player.receiveCard(new Card(6));
         player.receiveCard(new Card(7));
         player.receiveCard(new Card(4));
@@ -19,9 +21,13 @@ public class PlayerTest {
         draw.addCard(new Card(9));
 
         assertTrue(player.playTurn());
+        String log = writer.toString();
         assertEquals("7 4 2 9", player.handContents());
         assertEquals(0, draw.size());
         assertEquals("deck2 contents: 6", discard.contents());
+        assertTrue(log.contains("player 1 draws a 9 from deck 1"));
+        assertTrue(log.contains("player 1 discards a 6 to deck 2"));
+        assertTrue(log.contains("player 1 current hand is 7 4 2 9"));
     }
 
     @Test
