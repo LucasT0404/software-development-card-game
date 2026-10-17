@@ -9,7 +9,8 @@ public class CardGame {
         //reading in the number n of players in the game
         BufferedReader numReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter number of players (must be above-zero integer): ");
-        int numPlayers = Integer.parseInt(numReader.readLine);
+        numPlayers = Integer.parseInt(numReader.readLine);
+        
 
         //1) reading in the filename containing Pack cards
         BufferedReader filenameReader = new BufferedReader(new InputStreamReader(System.in));
