@@ -2,14 +2,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class CardGame {
-    private int numPlayers;
     public static void main(String[] args) {
         
 
         //reading in the number n of players in the game
         BufferedReader numReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter number of players (must be above-zero integer): ");
-        numPlayers = Integer.parseInt(numReader.readLine);
+        int numPlayers = Integer.parseInt(numReader.readLine);
         
 
         //1) reading in the filename containing Pack cards
