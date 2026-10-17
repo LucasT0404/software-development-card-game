@@ -16,7 +16,7 @@ public class Player implements Runnable {
             throw new IllegalArgumentException("Minimum number for player must be 1");
         }
         if (drawDeck == null || discardDeck == null) {
-            throw new IllegalStateException("Decks are null");
+            throw new IllegalArgumentException("Decks are null");
         }
         if (discardDeck.getDeckNum() < drawDeck.getDeckNum()) {
             firstLock = discardDeck;
@@ -25,64 +25,43 @@ public class Player implements Runnable {
             firstLock = drawDeck;
             secondLock = discardDeck;
         }
-        Hand hand = new Hand(playerNum);
 
         this.playerNum = playerNum;
         this.drawDeck = drawDeck;
         this.discardDeck = discardDeck;
         this.winner = winner;
         this.output = output;
-        this.hand = hand;
+        this.hand = new Hand(playerNum);
     }
 
     boolean playTurn() {
-        CardDeck first = drawDeck;
-        CardDeck second = discardDeck;
-
-        synchronized (first) {
-            synchronized (second) {
-                if (first.isEmpty()) {
+        synchronized (firstLock) {
+            synchronized (secondLock) {
+                if (drawDeck.isEmpty()) {
                     return false;
                 }
+                Card drawnCard = drawDeck.drawCard();
+                hand.addCard(drawnCard);
+                Card discardedCard = hand.discard();
+                discardDeck.addCard(discardedCard);
+                return true;
             }
         }
-        Card drawnCard = first.drawCard();
-        hand.addCard(drawnCard);
-        Card discardedCard = hand.discard();
-        discardDeck.addCard(discardedCard);
-        return true;
+    }
 
+    public void receiveCard(Card c) {
+        hand.addCard(c);
+    }
+
+    public String handContents() {
+        return hand.contents();
+    }
+
+    public int getHandSize() {
+        return hand.size();
     }
 
     public void run() {
-        Thread player = new Thread();
 
     }
 }
-
-/*
- * start individual player threads in CardGame class.
- *
- * class Player implements Runnable
- * private playerNum;
- *
- * //ensures thread safe class
- * private volatile boolean exit
- *
- * //list of all players, numbered 1 to n
- * private List<Int> players = new ArrayList<>();
- * for (int i = 0; i < n; i++){
- * playerNum = i+1;
- * }
- *
- * public Player(){
- * }
- *
- * public void stopThread() {
- * exit = true;
- * }
- *
- * getPlayerIndex()
- * return playerIndex;
- *
- */
