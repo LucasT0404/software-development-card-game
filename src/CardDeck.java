@@ -46,7 +46,7 @@ public class CardDeck {
     public void writeToDeckFile() {
         String fileName = "deck" + deckNum + "_output.txt";
         try (FileWriter writer = new FileWriter(fileName)) {
-            // writer.write(deckXcontents);
+            writer.write(contents() + System.lineSeparator());
         } catch (IOException e) {
             e.printStackTrace();
         }
