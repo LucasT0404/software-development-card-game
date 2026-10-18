@@ -9,7 +9,7 @@ public class HandTest {
         hand.addCard(new Card(1));
         hand.addCard(new Card(1));
         hand.addCard(new Card(1));
-        assertTrue(hand.isWinning());
+        assertTrue(hand.winning());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class HandTest {
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
-        assertTrue(hand.isWinning());
+        assertTrue(hand.winning());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class HandTest {
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
-        assertFalse(hand.isWinning());
+        assertFalse(hand.winning());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class HandTest {
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
-        assertFalse(hand.isWinning());
+        assertFalse(hand.winning());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class HandTest {
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
         hand.addCard(new Card(7));
-        assertFalse(hand.isWinning());
+        assertFalse(hand.winning());
     }
 
     @Test

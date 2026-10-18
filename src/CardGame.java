@@ -15,12 +15,11 @@ public class CardGame {
 
     public CardGame(final int n, List<Card> cards) throws IOException {
         this.n = n;
-        // Adding n number of decks to Deck list
+
         for (int i = 0; i < n; i++) {
             decks.add(new CardDeck(i + 1));
         }
 
-        // Creating n number of players with all constructor parameters
         for (int i = 0; i < n; i++) {
             players.add(new Player(i + 1, decks.get(i), decks.get((i + 1) % n), winner,
                     new PrintWriter(new FileWriter("player" + (i + 1) + "_output.txt"))));
@@ -29,16 +28,14 @@ public class CardGame {
         // Counter to loop through pack (increments each time after use) --> ensures
         // --> same card in pack is not dealt twice.
         int packIncrementer = 0;
-        // Loop 4 times, for 4 cards
         for (int round = 0; round < 4; round++) {
-            // Add one card to each player's hand
             for (int p = 0; p < n; p++) {
                 Card cardToAddToHand = cards.get(packIncrementer++);
                 players.get(p).receiveCard(cardToAddToHand);
             }
         }
 
-        // Fill decks with remaining cards, same as players loop.
+        // fill decks with remaining cards same as players loop.
         for (int round = 0; round < 4; round++) {
             for (int i = 0; i < n; i++) {
                 Card cardToAddToDeck = cards.get(packIncrementer++);

@@ -21,7 +21,7 @@ public class Hand {
         return cards.size();
     }
 
-    public boolean isWinning() {
+    public boolean winning() {
         if (cards.size() != 4) {
             return false;
         }

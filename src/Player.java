@@ -72,7 +72,7 @@ public class Player implements Runnable {
     public void run() {
         try {
             printLog("player " + playerNum + " initial hand " + handContents());
-            if (hand.isWinning()) {
+            if (hand.winning()) {
                 winner.compareAndSet(0, playerNum);
             }
             while (winner.get() == 0) {
@@ -85,7 +85,7 @@ public class Player implements Runnable {
                         break;
                     }
                 } else {
-                    if (hand.isWinning()) {
+                    if (hand.winning()) {
                         winner.compareAndSet(0, playerNum);
                     }
                 }
