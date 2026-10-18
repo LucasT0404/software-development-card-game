@@ -1,7 +1,6 @@
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.ArrayDeque;
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -42,13 +41,11 @@ public class CardDeck {
     }
 
     // each deck's final contents written to deckX_output.txt file
-    // each deck has a seperate file.
-    public void writeToDeckFile() {
+    // each deck has a separate file.
+    public void writeToDeckFile() throws IOException {
         String fileName = "deck" + deckNum + "_output.txt";
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(contents() + System.lineSeparator());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
