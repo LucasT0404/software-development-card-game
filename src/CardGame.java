@@ -100,4 +100,26 @@ public class CardGame {
         }
     }
 
+    public int getWinner() {
+        return winner.get();
+    }
+
+    public int totalCards() {
+        int totalCards = 0;
+        for (int i = 0; i < n; i++) {
+            totalCards += players.get(i).getHandSize();
+            totalCards += decks.get(i).size();
+        }
+        return totalCards;
+    }
+
+    public boolean handSizeIsFour() {
+        for (Player player : players) {
+            if (player.getHandSize() != 4) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
