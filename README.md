@@ -32,6 +32,8 @@ software-development-card-game/
         junit-platform-console-standalone-1.14.4.jar
 ```
 ## How to run the game
+
+To use included packs, unzip cardsTest.zip and run cards.jar from inside the unzipped folder.
 Using the jar run the following command in the terminal:
 ```
 java -jar cards.jar
