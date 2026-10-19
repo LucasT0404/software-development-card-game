@@ -35,6 +35,7 @@ public class CardDeck {
         return deckNum;
     }
 
+    // Go through queue, turn all Cards into strings, join into one string
     public synchronized String contents() {
         return "deck" + deckNum + " contents: "
                 + deckCards.stream().map(Card::toString).collect(Collectors.joining(" "));

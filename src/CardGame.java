@@ -80,6 +80,7 @@ public class CardGame {
         game.play();
     }
 
+    // Create all threads, wait all threads to finish, and write deck outputs.
     public void play() throws InterruptedException, IOException {
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < n; i++) {

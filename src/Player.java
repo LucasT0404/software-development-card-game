@@ -18,6 +18,9 @@ public class Player implements Runnable {
         if (drawDeck == null || discardDeck == null) {
             throw new IllegalArgumentException("Decks are null");
         }
+        // Set decks to lock as the lowest deck number first to avoid deadlock
+        // Player 1 and Player n will always compete for deck 1, worst-case leads to
+        // player n locking nothing and n-1 locking both their decks
         if (discardDeck.getDeckNum() < drawDeck.getDeckNum()) {
             firstLock = discardDeck;
             secondLock = drawDeck;
@@ -34,6 +37,7 @@ public class Player implements Runnable {
         this.hand = new Hand(playerNum);
     }
 
+    // Wait to lock both decks then play regular turn and logging for output file.
     boolean playTurn() {
         synchronized (firstLock) {
             synchronized (secondLock) {
@@ -69,6 +73,7 @@ public class Player implements Runnable {
         return hand.size();
     }
 
+    // Loop game until winner value is anything other than 0, then stop writing log.
     public void run() {
         try {
             printLog("player " + playerNum + " initial hand " + handContents());

@@ -44,6 +44,7 @@ public class Hand {
         throw new IllegalStateException("No cards of non-preferred value to discard");
     }
 
+    // Prints all 4 values in hand in one string
     public String contents() {
         return cards.stream().map(Card::toString).collect(Collectors.joining(" "));
     }

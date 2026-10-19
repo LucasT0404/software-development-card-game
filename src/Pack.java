@@ -10,7 +10,7 @@ public class Pack {
     }
 
     public static List<Card> loadPack(String filename, int numPlayers) {
-        // Create ArrayList to store each line of pack as a value in a list
+        // Each line of pack as a value in a list
         List<Card> cards = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -25,7 +25,7 @@ public class Pack {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Line is not an integer", e);
         }
-        // Check if pack size is valid
+        // check if pack size is valid (8*n)
         if (cards.size() != 8 * numPlayers) {
             throw new IllegalArgumentException("Pack does not have a valid number of cards | Expected: "
                     + (8 * numPlayers) + " Found: " + cards.size());
